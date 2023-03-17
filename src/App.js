@@ -6,6 +6,10 @@ import Error from './pages/Error';
 function App() {
     return(
         <Router>
+            <div>
+                <div>Home</div>
+                <div>EDA</div>
+            </div>
             <Routes>
                 <Route path='/' element={<Home />}></Route>
                 <Route path='/eda' element={<Eda />}></Route>
