@@ -6,10 +6,16 @@ import Error from './pages/Error';
 function App() {
     return(
         <Router>
-            <div>
-                <div>Home</div>
-                <div>EDA</div>
-            </div>
+            <nav className='navbar navbar-expand'>
+                <ul className='navbar-nav'>
+                    <li className='nav-item'>
+                        <a href='/' className='nav-link'>Home</a>
+                    </li>
+                    <li className='nav-item'>
+                        <a href='/eda' className='nav-link'>EDA</a>
+                    </li>
+                </ul>
+            </nav>
             <Routes>
                 <Route path='/' element={<Home />}></Route>
                 <Route path='/eda' element={<Eda />}></Route>

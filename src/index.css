@@ -1,5 +1,26 @@
-#navbar {
-    
+body {
+    background-color: #DAE3F3;
+}
+
+.navbar {
+    padding: 0px;
+    background-color: #4472C4;
+}
+
+.nav-item {
+    text-align: center;
+    width: 10vw;
+}
+
+.nav-link {
+    font-weight: bold;
+    color: white;
+}
+
+.nav-active {
+    color: #4472C4;
+    background-color: #DAE3F3;
+    border-radius: 15px 15px 0px 0px;
 }
 
 #map {
