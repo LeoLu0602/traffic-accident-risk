@@ -14,13 +14,12 @@ function Home() {
             />
             <div>
                 <div>
-                    <div className='form-group has-search'>
-                        <span className='fa fa-search form-control-feedback'></span>
-                        <input id='search-box' type='text' className='form-control' />
-                    </div>
+                    <span className='fa fa-search form-control-feedback' />
+                    <input id='search-box' type='text' className='form-control' />
                 </div>
                 <div>
-
+                    <div></div>
+                    <div></div>
                 </div>
             </div>
         </div>

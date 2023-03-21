@@ -35,13 +35,12 @@ body {
 #home > div {
     width: 60%;
     height: 620px;
+    padding-left: 2%;
+    padding-right: 2%;
 }
 
 #home > div > div:first-child {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 96%;
+    height: 38px;
 }
 
 #search-box {
@@ -55,7 +54,6 @@ body {
 
 .form-control-feedback {
     position: absolute;
-    z-index: 2;
     display: block;
     width: 2.375rem;
     height: 2.375rem;
@@ -63,4 +61,15 @@ body {
     text-align: center;
     pointer-events: none;
     color: #aaa;
+}
+
+#home > div > div:last-child {
+    display: flex;
+    width: 100%;
+    height: 582px;
+}
+
+#home > div > div:last-child > div:first-child {
+    width: 50%;
+    height: 100%;
 }
