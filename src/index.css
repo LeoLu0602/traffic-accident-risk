@@ -24,7 +24,6 @@ body {
 }
 
 #map {
-    position: absolute;
-    top: 100px;
-    left: 10vw;
+    margin-left: 2%;
+    margin-top: 20px;
 }

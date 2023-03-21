@@ -6,7 +6,9 @@ function Eda() {
     }, []);
 
     return(
-        <div>EDA</div>
+        <div>
+            
+        </div>
     );
 }
 
