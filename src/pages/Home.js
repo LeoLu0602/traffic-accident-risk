@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import Map from '../components/Map';
 
 function Home() {
     useEffect(() => {
@@ -7,8 +6,23 @@ function Home() {
     }, []);
 
     return(
-        <div>
-            <Map />
+        <div id='home'>
+            <iframe
+                id='map' 
+                src='https://www.google.com/maps/d/u/0/embed?mid=1NlEM_e2JqrixSlWUanbQRZNQ6D1SmF0&ehbc=2E312F'
+                width="38%" height="620"
+            />
+            <div>
+                <div>
+                    <div className='form-group has-search'>
+                        <span className='fa fa-search form-control-feedback'></span>
+                        <input id='search-box' type='text' className='form-control' />
+                    </div>
+                </div>
+                <div>
+
+                </div>
+            </div>
         </div>
     );
 }

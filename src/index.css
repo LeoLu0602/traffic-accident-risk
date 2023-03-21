@@ -23,7 +23,44 @@ body {
     border-radius: 15px 15px 0px 0px;
 }
 
+#home {
+    display: flex;
+    margin-top: 20px;
+}
+
 #map {
     margin-left: 2%;
-    margin-top: 20px;
+}
+
+#home > div {
+    width: 60%;
+    height: 620px;
+}
+
+#home > div > div:first-child {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 96%;
+}
+
+#search-box {
+    background-color: #ccc;
+    border-radius: 15px;
+}
+
+.form-control {
+    padding-left: 2.375rem;
+}
+
+.form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
 }
