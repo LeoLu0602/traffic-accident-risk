@@ -1,4 +1,18 @@
+import { useState } from 'react';
+
 function Home() {
+    const [searchText, setSearchText] = useState('');
+    
+    const handleChange = (e) => {
+        setSearchText(e.target.value);
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            
+        }
+    };
+
     return(
         <div id='home'>
             <iframe
@@ -9,7 +23,14 @@ function Home() {
             <div>
                 <div>
                     <span className='fa fa-search form-control-feedback' />
-                    <input id='search-box' type='text' className='form-control' />
+                    <input 
+                        id='search-box'  
+                        className='form-control'
+                        type='text'
+                        value={searchText}
+                        onChange={handleChange}
+                        onKeyDown={handleKeyDown}     
+                    />
                 </div>
                 <div>
                     <div></div>
