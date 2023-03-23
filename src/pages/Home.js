@@ -1,9 +1,7 @@
-import { useEffect } from 'react';
-
 function Home() {
-    useEffect(() => {
-        document.querySelector('.nav-item:nth-child(1) .nav-link').classList.toggle('nav-active');
-    }, []);
+    // useEffect(() => {
+    //     document.querySelector('.nav-item:nth-child(1) .nav-link').classList.toggle('nav-active');
+    // }, []);
 
     return(
         <div id='home'>
