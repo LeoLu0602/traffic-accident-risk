@@ -57,12 +57,6 @@ function Home() {
                 zoom={16}
                 center={{ lat, lng }}
                 mapContainerClassName='google-map'
-                options={{ 
-                    zoomControl: false,
-                    streetViewControl: false,
-                    mapTypeControl: false,
-                    fullscreenControl: false
-                }}
             />
             <div id='home-right'>
                 <div id='search-box-container'>
