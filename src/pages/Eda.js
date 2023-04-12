@@ -1,5 +1,5 @@
 function Eda() {
-    return(
+    return (
         <div>
             
         </div>
