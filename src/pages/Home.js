@@ -1,10 +1,11 @@
 import { useState } from 'react';
+import axios from 'axios';
 import { GoogleMap, useLoadScript } from '@react-google-maps/api';
-import { getGeocode, getLatLng } from 'use-places-autocomplete';
 import Result from '../components/Result';
 
 function Home() {
-    const [center, setCenter] = useState({ lat: 22.9968, lng: 120.2169 });
+    const [lat, setLat] = useState(22.9968);
+    const [lng, setLng] = useState(120.2169);
     const [searchText, setSearchText] = useState('');
     const [searchResults, setSearchResult] = useState([
         {
@@ -26,26 +27,35 @@ function Home() {
         setSearchText(e.target.value);
     };
 
-    const handleKeyDown = async (e) => {
+    const handleKeyDown = (e) => {
         if (e.key === 'Enter' && searchText) {
-            const results = await getGeocode({ address: searchText });
-            // const { lat, lng } = getLatLng(results[0]);
-            // setCenter({ lat: 51.5, lng: 0 }); 
+            axios.get(`https://geocode.maps.co/search?q=${searchText}`)
+            .then(res => {
+                const resultsArray = res.data;
+                if (resultsArray.length > 0) {
+                    const targetLat = parseFloat(resultsArray[0].lat);
+                    const targetLng = parseFloat(resultsArray[0].lon);
+                    setLat(targetLat);
+                    setLng(targetLng);
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
         }
     };
 
     const { isLoaded } =  useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_API_KEY,
-        libraries: ['places']
     });
 
-    if (!isLoaded) return <div></div>;
+    if (!isLoaded) return <div />;
 
     return (
         <div id='home'>
             <GoogleMap
                 zoom={16}
-                center={center}
+                center={{ lat, lng }}
                 mapContainerClassName='google-map'
                 options={{ 
                     zoomControl: false,
