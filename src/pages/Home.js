@@ -7,21 +7,7 @@ function Home() {
     const [lat, setLat] = useState(22.9968);
     const [lng, setLng] = useState(120.2169);
     const [searchText, setSearchText] = useState('');
-    const [searchResults, setSearchResult] = useState([
-        {
-            location: '台南市東區勝利路171巷1號',
-            risk: 2
-        },
-        {
-            location: '台南市東區育樂街66巷10號2樓',
-            risk: 1
-        },
-
-        {
-            location: '台南市東區大學路西段39號',
-            risk: 3
-        }
-    ]);
+    const [searchResults, setSearchResult] = useState([]);
     
     const handleChange = (e) => {
         setSearchText(e.target.value);
