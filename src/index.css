@@ -96,11 +96,25 @@ body {
     background-color: red;
 }
 
-#eda-graph {
+.graph-row {
+    display: flex;
+    width: 90vw;
+    height: 500px;
+    margin-left: 5vw;
+    margin-bottom: 5vh;
+}
+
+.graph-row:first-child {
+    margin-top: 5vh;
+}
+
+.graph {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 3vh;
-    width: 96vw;
-    height: 89vh;
+    width: 60%;
+    height: 100%;
+}
+
+.explanation {
+    width: 40%;
+    padding-left: 2em;
 }
