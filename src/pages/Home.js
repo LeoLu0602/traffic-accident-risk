@@ -7,7 +7,7 @@ function Home() {
     const [lat, setLat] = useState(22.9968);
     const [lng, setLng] = useState(120.2169);
     const [searchText, setSearchText] = useState('');
-    const [searchResults, setSearchResult] = useState([]);
+    const [searchResults, setSearchResults] = useState([]);
     
     const handleChange = (e) => {
         setSearchText(e.target.value);
@@ -23,6 +23,16 @@ function Home() {
                     const targetLng = parseFloat(resultsArray[0].lon);
                     setLat(targetLat);
                     setLng(targetLng);
+                    
+                    // axios.get('', { lat: targetLat, lng: targetLng })
+                    // .then(res => {
+                    //     const results = res.data;
+                    //     console.log(results);
+                    //     setSearchResults(results);
+                    // })
+                    // .catch(err => {
+                    //     console.log(err);
+                    // });
                 }
             })
             .catch(err => {
