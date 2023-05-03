@@ -10,7 +10,7 @@ function Home() {
     const [destinationLng, setDestinationLng] = useState(120.2169);
     const [searchTextOrigin, setSearchTextOrigin] = useState('');
     const [searchTextDestination, setSearchTextDestination] = useState('');
-    const [searchResults, setSearchResult] = useState([
+    const [searchResults, setSearchResults] = useState([
         {
             location: 'location 1',
             risk: 2
@@ -78,7 +78,7 @@ function Home() {
         else setSearchTextDestination(e.target.value);
     };
 
-    const handleClick = () => {
+    const submit = () => {
         if (searchTextOrigin !== '' && searchTextDestination !== '') {
             axios.get(`https://geocode.maps.co/search?q=${searchTextOrigin}`)
             .then(res => {
@@ -109,6 +109,16 @@ function Home() {
         }
     };
 
+    const reset = () => {
+        setOriginLat(22.9968);
+        setOriginLng(120.2169);
+        setDestinationLat(22.9968);
+        setDestinationLng(120.2169);
+        setSearchTextOrigin('');
+        setSearchTextDestination('');
+        setSearchResults([]);
+    };
+
     const { isLoaded } =  useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_API_KEY,
     });
@@ -123,12 +133,15 @@ function Home() {
                 mapContainerClassName='google-map'
             >
                 <Marker
+                    zIndex={1}
+                    label='A'
                     position={{
                         lat: originLat,
                         lng: originLng
                     }}
                 />
                 <Marker
+                    label='B'
                     position={{
                         lat: destinationLat,
                         lng: destinationLng
@@ -141,7 +154,7 @@ function Home() {
                     <input
                         id='origin-box' 
                         className='form-control search-box'
-                        placeholder='Origin'
+                        placeholder='Starting point'
                         type='text'
                         value={searchTextOrigin}
                         onChange={handleChange}  
@@ -158,7 +171,10 @@ function Home() {
                         onChange={handleChange} 
                     />
                 </div>
-                <button id='submit-btn' onClick={handleClick}>Submit</button>
+                <div id='btn-container'>
+                    <button id='submit-btn' onClick={submit}>Submit</button>
+                    <button id='reset-btn' onClick={reset}>Reset</button>
+                </div>
                 <div id='search-results'>
                     {searchResults.sort((a, b) => b.risk - a.risk).map((result, i) => <Result key={i} info={result} />)}
                 </div>
