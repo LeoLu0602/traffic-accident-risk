@@ -1,3 +1,12 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
 body {
     background-color: #DAE3F3;
 }
@@ -80,7 +89,7 @@ body {
 }
 
 #submit-btn:hover {
-    background-color: rgb(0, 68, 0);
+    background-color: rgb(0, 48, 0);
 }
 
 #reset-btn {
@@ -93,7 +102,7 @@ body {
 }
 
 #reset-btn:hover {
-    background-color: rgb(195, 0, 0);
+    background-color: rgb(175, 0, 0);
 }
 
 #search-results {
@@ -101,9 +110,9 @@ body {
     height: 74%;
     margin-top: 2%;
     overflow: auto;
-    background-color: #fff;
-    padding-top: 3%;
-    padding-bottom: 3%;
+    background-color: white;
+    padding-top: 2%;
+    padding-bottom: 2%;
 }
 
 #search-results::-webkit-scrollbar {
@@ -112,7 +121,7 @@ body {
 
 #result {
     display: block;
-    width: 95%;
+    width: 98%;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -144,7 +153,7 @@ body {
     width: 90vw;
     height: 500px;
     margin-left: 5vw;
-    margin-bottom: 5vh;
+    margin-bottom: 1vh;
 }
 
 .graph-row:first-child {
@@ -160,6 +169,13 @@ body {
 .explanation {
     width: 40%;
     padding-left: 2em;
+    font-weight: bold;
+    animation: fadeIn 2s;
+}
+
+.explanation::selection {
+    background-color: green;
+    color: white;
 }
 
 .hide {

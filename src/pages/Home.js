@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
+import { GoogleMap, useLoadScript, Marker, TrafficLayer } from '@react-google-maps/api';
 import Result from '../components/Result';
 
 function Home() {
@@ -12,64 +12,44 @@ function Home() {
     const [searchTextDestination, setSearchTextDestination] = useState('');
     const [searchResults, setSearchResults] = useState([
         {
-            location: 'location 1',
+            location: 'Location 1',
             risk: 2
         },
         {
-            location: 'location 2',
+            location: 'Location 2',
             risk: 1
         },
         {
-            location: 'location 3',
+            location: 'Location 3',
             risk: 3
         },
         {
-            location: 'location 1',
+            location: 'Location 4',
             risk: 2
         },
         {
-            location: 'location 2',
+            location: 'Location 5',
             risk: 1
         },
         {
-            location: 'location 3',
+            location: 'Location 6',
             risk: 3
         },
         {
-            location: 'location 1',
+            location: 'Location 7',
             risk: 2
         },
         {
-            location: 'location 2',
+            location: 'Location 8',
             risk: 1
         },
         {
-            location: 'location 3',
-            risk: 3
+            location: 'Location 9',
+            risk: 1
         },
         {
-            location: 'location 1',
+            location: 'Location 10',
             risk: 2
-        },
-        {
-            location: 'location 2',
-            risk: 1
-        },
-        {
-            location: 'location 3',
-            risk: 3
-        },
-        {
-            location: 'location 1',
-            risk: 2
-        },
-        {
-            location: 'location 2',
-            risk: 1
-        },
-        {
-            location: 'location 3',
-            risk: 3
         },
     ]);
     
@@ -128,7 +108,7 @@ function Home() {
     return (
         <div id='home'>
             <GoogleMap
-                zoom={15}
+                zoom={16}
                 center={{ lat: originLat, lng: originLng }}
                 mapContainerClassName='google-map'
             >
@@ -147,6 +127,7 @@ function Home() {
                         lng: destinationLng
                     }}
                 />
+                <TrafficLayer />
             </GoogleMap>
             <div id='home-right'>
                 <div className='search-box-container'>
