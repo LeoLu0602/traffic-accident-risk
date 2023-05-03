@@ -1,28 +1,106 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { GoogleMap, useLoadScript } from '@react-google-maps/api';
+import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import Result from '../components/Result';
 
 function Home() {
-    const [lat, setLat] = useState(22.9968);
-    const [lng, setLng] = useState(120.2169);
-    const [searchText, setSearchText] = useState('');
-    const [searchResults, setSearchResult] = useState([]);
+    const [originLat, setOriginLat] = useState(22.9968);
+    const [originLng, setOriginLng] = useState(120.2169);
+    const [destinationLat, setDestinationLat] = useState(22.9968);
+    const [destinationLng, setDestinationLng] = useState(120.2169);
+    const [searchTextOrigin, setSearchTextOrigin] = useState('');
+    const [searchTextDestination, setSearchTextDestination] = useState('');
+    const [searchResults, setSearchResult] = useState([
+        {
+            location: 'location 1',
+            risk: 2
+        },
+        {
+            location: 'location 2',
+            risk: 1
+        },
+        {
+            location: 'location 3',
+            risk: 3
+        },
+        {
+            location: 'location 1',
+            risk: 2
+        },
+        {
+            location: 'location 2',
+            risk: 1
+        },
+        {
+            location: 'location 3',
+            risk: 3
+        },
+        {
+            location: 'location 1',
+            risk: 2
+        },
+        {
+            location: 'location 2',
+            risk: 1
+        },
+        {
+            location: 'location 3',
+            risk: 3
+        },
+        {
+            location: 'location 1',
+            risk: 2
+        },
+        {
+            location: 'location 2',
+            risk: 1
+        },
+        {
+            location: 'location 3',
+            risk: 3
+        },
+        {
+            location: 'location 1',
+            risk: 2
+        },
+        {
+            location: 'location 2',
+            risk: 1
+        },
+        {
+            location: 'location 3',
+            risk: 3
+        },
+    ]);
     
     const handleChange = (e) => {
-        setSearchText(e.target.value);
+        if (e.target.id === 'origin-box') setSearchTextOrigin(e.target.value);
+        else setSearchTextDestination(e.target.value);
     };
 
-    const handleKeyDown = (e) => {
-        if (e.key === 'Enter' && searchText) {
-            axios.get(`https://geocode.maps.co/search?q=${searchText}`)
+    const handleClick = () => {
+        if (searchTextOrigin !== '' && searchTextDestination !== '') {
+            axios.get(`https://geocode.maps.co/search?q=${searchTextOrigin}`)
             .then(res => {
                 const resultsArray = res.data;
                 if (resultsArray.length > 0) {
                     const targetLat = parseFloat(resultsArray[0].lat);
                     const targetLng = parseFloat(resultsArray[0].lon);
-                    setLat(targetLat);
-                    setLng(targetLng);
+                    setOriginLat(targetLat);
+                    setOriginLng(targetLng);
+                    axios.get(`https://geocode.maps.co/search?q=${searchTextDestination}`)
+                    .then(res => {
+                        const resultsArray = res.data;
+                        if (resultsArray.length > 0) {
+                            const targetLat = parseFloat(resultsArray[0].lat);
+                            const targetLng = parseFloat(resultsArray[0].lon);
+                            setDestinationLat(targetLat);
+                            setDestinationLng(targetLng);
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
                 }
             })
             .catch(err => {
@@ -40,22 +118,47 @@ function Home() {
     return (
         <div id='home'>
             <GoogleMap
-                zoom={16}
-                center={{ lat, lng }}
+                zoom={15}
+                center={{ lat: originLat, lng: originLng }}
                 mapContainerClassName='google-map'
-            />
+            >
+                <Marker
+                    position={{
+                        lat: originLat,
+                        lng: originLng
+                    }}
+                />
+                <Marker
+                    position={{
+                        lat: destinationLat,
+                        lng: destinationLng
+                    }}
+                />
+            </GoogleMap>
             <div id='home-right'>
-                <div id='search-box-container'>
+                <div className='search-box-container'>
                     <span className='fa fa-search form-control-feedback' />
-                    <input 
-                        id='search-box'  
-                        className='form-control'
+                    <input
+                        id='origin-box' 
+                        className='form-control search-box'
+                        placeholder='Origin'
                         type='text'
-                        value={searchText}
-                        onChange={handleChange}
-                        onKeyDown={handleKeyDown}     
+                        value={searchTextOrigin}
+                        onChange={handleChange}  
                     />
                 </div>
+                <div className='search-box-container'>
+                    <span className='fa fa-search form-control-feedback' />
+                    <input
+                        id='destination-box' 
+                        className='form-control search-box'
+                        placeholder='Destination'
+                        type='text'
+                        value={searchTextDestination}
+                        onChange={handleChange} 
+                    />
+                </div>
+                <button id='submit-btn' onClick={handleClick}>Submit</button>
                 <div id='search-results'>
                     {searchResults.sort((a, b) => b.risk - a.risk).map((result, i) => <Result key={i} info={result} />)}
                 </div>
