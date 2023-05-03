@@ -1,131 +1,13 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { GoogleMap, useLoadScript } from '@react-google-maps/api';
 import Result from '../components/Result';
 
 function Home() {
+    const [lat, setLat] = useState(22.9968);
+    const [lng, setLng] = useState(120.2169);
     const [searchText, setSearchText] = useState('');
-    const [searchResults, setSearchResult] = useState([
-        {
-            location: '台南市東區大學路西段39號',
-            risk: 3
-        },
-        {
-            location: '台南市東區勝利路171巷1號',
-            risk: 2
-        },
-        {
-            location: '台南市東區育樂街66巷10號2樓',
-            risk: 1
-        },
-        {
-            location: '台南市東區大學路西段39號',
-            risk: 3
-        },
-        {
-            location: '台南市東區勝利路171巷1號',
-            risk: 2
-        },
-        {
-            location: '台南市東區育樂街66巷10號2樓',
-            risk: 1
-        },
-        {
-            location: '台南市東區大學路西段39號',
-            risk: 3
-        },
-        {
-            location: '台南市東區勝利路171巷1號',
-            risk: 2
-        },
-        {
-            location: '台南市東區育樂街66巷10號2樓',
-            risk: 1
-        },
-        {
-            location: '台南市東區大學路西段39號',
-            risk: 3
-        },
-        {
-            location: '台南市東區勝利路171巷1號',
-            risk: 2
-        },
-        {
-            location: '台南市東區育樂街66巷10號2樓',
-            risk: 1
-        },
-        {
-            location: '台南市東區大學路西段39號',
-            risk: 3
-        },
-        {
-            location: '台南市東區勝利路171巷1號',
-            risk: 2
-        },
-        {
-            location: '台南市東區育樂街66巷10號2樓',
-            risk: 1
-        },
-        {
-            location: '台南市東區大學路西段39號',
-            risk: 3
-        },
-        {
-            location: '台南市東區勝利路171巷1號',
-            risk: 2
-        },
-        {
-            location: '台南市東區育樂街66巷10號2樓',
-            risk: 1
-        },
-        {
-            location: '台南市東區大學路西段39號',
-            risk: 3
-        },
-        {
-            location: '台南市東區勝利路171巷1號',
-            risk: 2
-        },
-        {
-            location: '台南市東區育樂街66巷10號2樓',
-            risk: 1
-        },
-        {
-            location: '台南市東區大學路西段39號',
-            risk: 3
-        },
-        {
-            location: '台南市東區勝利路171巷1號',
-            risk: 2
-        },
-        {
-            location: '台南市東區育樂街66巷10號2樓',
-            risk: 1
-        },
-        {
-            location: '台南市東區大學路西段39號',
-            risk: 3
-        },
-        {
-            location: '台南市東區勝利路171巷1號',
-            risk: 2
-        },
-        {
-            location: '台南市東區育樂街66巷10號2樓',
-            risk: 1
-        },
-        {
-            location: '台南市東區大學路西段39號',
-            risk: 3
-        },
-        {
-            location: '台南市東區勝利路171巷1號',
-            risk: 2
-        },
-        {
-            location: '台南市東區育樂街66巷10號2樓',
-            risk: 1
-        }
-    ]);
+    const [searchResults, setSearchResult] = useState([]);
     
     const handleChange = (e) => {
         setSearchText(e.target.value);
@@ -133,19 +15,15 @@ function Home() {
 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter' && searchText) {
-            // Google API (map zoom in)
-            axios.post('', { location: searchText })
+            axios.get(`https://geocode.maps.co/search?q=${searchText}`)
             .then(res => {
-
-            })
-            .catch(err => {
-                console.log(err);
-            });
-
-            // Model API (display results)
-            axios.post('', { location: searchText })
-            .then(res => {
-
+                const resultsArray = res.data;
+                if (resultsArray.length > 0) {
+                    const targetLat = parseFloat(resultsArray[0].lat);
+                    const targetLng = parseFloat(resultsArray[0].lon);
+                    setLat(targetLat);
+                    setLng(targetLng);
+                }
             })
             .catch(err => {
                 console.log(err);
@@ -153,12 +31,18 @@ function Home() {
         }
     };
 
-    return(
+    const { isLoaded } =  useLoadScript({
+        googleMapsApiKey: process.env.REACT_APP_API_KEY,
+    });
+
+    if (!isLoaded) return <div />;
+
+    return (
         <div id='home'>
-            <iframe
-                id='map' 
-                src='https://www.google.com/maps/d/u/0/embed?mid=1NlEM_e2JqrixSlWUanbQRZNQ6D1SmF0&ehbc=2E312F'
-                width="38%" height="620"
+            <GoogleMap
+                zoom={16}
+                center={{ lat, lng }}
+                mapContainerClassName='google-map'
             />
             <div id='home-right'>
                 <div id='search-box-container'>
@@ -172,11 +56,8 @@ function Home() {
                         onKeyDown={handleKeyDown}     
                     />
                 </div>
-                <div id='home-right-bottom'>
-                    <div id='menu'></div>
-                    <div id='search-results'>
-                        {searchResults.map(result => <Result info={result} />)}
-                    </div>
+                <div id='search-results'>
+                    {searchResults.sort((a, b) => b.risk - a.risk).map((result, i) => <Result key={i} info={result} />)}
                 </div>
             </div>
         </div>
