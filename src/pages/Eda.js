@@ -9,11 +9,11 @@ function Eda() {
 
     return (
         <div id='eda'>
-            <GraphRow src='https://app.powerbi.com/view?r=eyJrIjoiNGNhYjVmZjItNWFmMy00ZWI4LWExZDgtYzcwMTc5NDFiYmU1IiwidCI6ImMyZTc3NTNmLWFhMDUtNGFiYy04YzAyLTI5M2FkMTIyY2ExOSIsImMiOjEwfQ%3D%3D' explanation={explanation1}/>
-            <GraphRow src='https://app.powerbi.com/view?r=eyJrIjoiMTcxMDA4MTMtZWJlOC00MzdjLWI0OTktZTdlNTUyYzk3MzFlIiwidCI6ImMyZTc3NTNmLWFhMDUtNGFiYy04YzAyLTI5M2FkMTIyY2ExOSIsImMiOjEwfQ%3D%3D' explanation={explanation2} />
-            <GraphRow src='https://app.powerbi.com/view?r=eyJrIjoiYzk0YWNjM2ItZWU3NC00NjcxLTkwMDQtNTU4MjRmMjQ5NjkxIiwidCI6ImMyZTc3NTNmLWFhMDUtNGFiYy04YzAyLTI5M2FkMTIyY2ExOSIsImMiOjEwfQ%3D%3D' explanation={explanation3} />
-            <GraphRow src='https://app.powerbi.com/view?r=eyJrIjoiZjI3NjFmZjktOTA5ZC00ZDk4LTkwMWMtMzE4MDljYTI2NzU0IiwidCI6ImMyZTc3NTNmLWFhMDUtNGFiYy04YzAyLTI5M2FkMTIyY2ExOSIsImMiOjEwfQ%3D%3D' explanation={explanation4} />
-            <GraphRow src='https://app.powerbi.com/view?r=eyJrIjoiYTYzMDlkMjEtOTk4NC00OGE3LWFmMTQtMWY5MTE0Yzk1Y2RiIiwidCI6ImMyZTc3NTNmLWFhMDUtNGFiYy04YzAyLTI5M2FkMTIyY2ExOSIsImMiOjEwfQ%3D%3D' explanation={explanation5} />
+            <GraphRow src='https://app.powerbi.com/view?r=eyJrIjoiODQ4MjI0MTQtMWVkZC00ZGIwLWFjMTQtZDYzODhkM2E5YWNhIiwidCI6ImMyZTc3NTNmLWFhMDUtNGFiYy04YzAyLTI5M2FkMTIyY2ExOSIsImMiOjEwfQ%3D%3D' explanation={explanation1}/>
+            <GraphRow src='https://app.powerbi.com/view?r=eyJrIjoiZmYyODMyZjYtNzgzMi00NjI4LThlOTMtZmJhMTRiMTA3NGNkIiwidCI6ImMyZTc3NTNmLWFhMDUtNGFiYy04YzAyLTI5M2FkMTIyY2ExOSIsImMiOjEwfQ%3D%3D' explanation={explanation2} /> 
+            <GraphRow src='https://app.powerbi.com/view?r=eyJrIjoiMTQ4OWEyNjItM2QyOC00MmY4LTk1ZjItY2ZiODhlOGM1MDA1IiwidCI6ImMyZTc3NTNmLWFhMDUtNGFiYy04YzAyLTI5M2FkMTIyY2ExOSIsImMiOjEwfQ%3D%3D' explanation={explanation3} />
+            <GraphRow src='https://app.powerbi.com/view?r=eyJrIjoiNzQ3ZWQzOGEtZDQyNS00N2FkLThjYWQtM2Y4ZmE1MmZmZGVkIiwidCI6ImMyZTc3NTNmLWFhMDUtNGFiYy04YzAyLTI5M2FkMTIyY2ExOSIsImMiOjEwfQ%3D%3D' explanation={explanation4} />
+            <GraphRow src='https://app.powerbi.com/view?r=eyJrIjoiNWIyNDczNDctZjgyMi00YzZjLWI3MzItOTZkOTQ2Nzg4N2U0IiwidCI6ImMyZTc3NTNmLWFhMDUtNGFiYy04YzAyLTI5M2FkMTIyY2ExOSIsImMiOjEwfQ%3D%3D' explanation={explanation5} />
         </div>
     );
 }
