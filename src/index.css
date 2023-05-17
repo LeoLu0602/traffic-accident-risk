@@ -167,11 +167,6 @@ body {
     font-weight: bold;
 }
 
-.explanation::selection {
-    background-color: green;
-    color: white;
-}
-
 .hide {
     position: absolute;
     left: 0;
