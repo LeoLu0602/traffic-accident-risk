@@ -32,7 +32,7 @@ function Eda() {
                                 <br/>
                                 <li>以美國的統計數據為例，有 1.057 億女性擁有駕照，1.043 億男性擁有駕照。但是男性每年造成約 610 萬起事故，女性每年造成 440 萬起事故。</li>
                                 <br/>
-                                <li>所以推測性別是影響因素之一。<br/><a className='no-underline' href='https://www.rosenfeldinjurylawyers.com/news/do-men-or-women-get-in-more-car-accidents/'>Do Men Or Women Get In More Car Accidents?</a></li>
+                                <li>所以推測性別是影響因素之一。</li>
                             </ul>
                          </div>;
     const explanation4 = <div className='explanation'>
@@ -77,9 +77,19 @@ function Eda() {
                 <br/>
                 <ul>
                     <li>車禍發生聚集在通勤時段是很正常、合理的，但我們要如何在車流量大的情況避免車禍的發生，是我們要關注的議題。</li>
+                    <br />
                     <li>台南的交通事故傷亡比例是全國最高，駕駛與行人要小心用路、注意安全。</li>
+                    <br />
                     <li>道路規劃、人行道設計是台南、甚至台灣交通的通病，等待我們一同解決這難題。</li>
-                    <li>資料來源：台南市政府科放資料</li>
+                    <br />
+                    <li>資料來源 :
+                        <br/>
+                        <br />
+                        <a className='no-underline' href='https://data.tainan.gov.tw/dataset/policedata016'>臺南市道路交通事故原因傷亡統計</a>
+                        <br/>
+                        <br />
+                        <a className='no-underline' href='https://data.tainan.gov.tw/dataset/trafowner'>臺南市道路交通事故當事者區分統計</a>
+                    </li>
                 </ul>
             </div>
         </div>
