@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { GoogleMap, useLoadScript, Marker, TrafficLayer } from '@react-google-maps/api';
+import { GoogleMap, useLoadScript, Marker, TrafficLayer, Autocomplete } from '@react-google-maps/api';
 import Result from '../components/Result';
 
 function Home() {
@@ -101,6 +101,7 @@ function Home() {
 
     const { isLoaded } =  useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_API_KEY,
+        libraries: ['places']
     });
 
     if (!isLoaded) return <div />;
@@ -132,25 +133,29 @@ function Home() {
             <div id='home-right'>
                 <div className='search-box-container'>
                     <span className='fa fa-search form-control-feedback' />
-                    <input
-                        id='origin-box' 
-                        className='form-control search-box'
-                        placeholder='Starting point'
-                        type='text'
-                        value={searchTextOrigin}
-                        onChange={handleChange}  
-                    />
+                    <Autocomplete>
+                        <input
+                            id='origin-box' 
+                            className='form-control search-box'
+                            placeholder='Starting point'
+                            type='text'
+                            value={searchTextOrigin}
+                            onChange={handleChange}  
+                        />
+                    </Autocomplete>
                 </div>
                 <div className='search-box-container'>
                     <span className='fa fa-search form-control-feedback' />
-                    <input
-                        id='destination-box' 
-                        className='form-control search-box'
-                        placeholder='Destination'
-                        type='text'
-                        value={searchTextDestination}
-                        onChange={handleChange} 
-                    />
+                    <Autocomplete>
+                        <input
+                            id='destination-box' 
+                            className='form-control search-box'
+                            placeholder='Destination'
+                            type='text'
+                            value={searchTextDestination}
+                            onChange={handleChange} 
+                        />
+                    </Autocomplete>
                 </div>
                 <div id='btn-container'>
                     <button id='submit-btn' onClick={submit}>Submit</button>
