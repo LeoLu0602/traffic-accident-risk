@@ -186,3 +186,26 @@ body {
     height: 37px;
     background-color: #DAE3F3;
 }
+
+.no-underline {
+    text-decoration: none;
+}
+
+#eda-title {
+    width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    text-align: center;
+    font-weight: bold;
+}
+
+#eda-conclusion {
+    width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    font-weight: bold;
+}

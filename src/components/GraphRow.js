@@ -4,7 +4,7 @@ function GraphRow(props) {
         <div className='graph-row'>
             <div className='hide' />
             <iframe className='graph' title='Report Section' src={src} frameborder='0' allowFullScreen='true'></iframe>
-            <div className='explanation'>{explanation}</div>
+            {explanation}
         </div>
     );
 }
