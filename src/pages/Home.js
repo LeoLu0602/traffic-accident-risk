@@ -4,12 +4,9 @@ import { GoogleMap, useLoadScript, Marker, TrafficLayer, Autocomplete } from '@r
 import Result from '../components/Result';
 
 function Home() {
-    const [originLat, setOriginLat] = useState(22.9968);
-    const [originLng, setOriginLng] = useState(120.2169);
-    const [destinationLat, setDestinationLat] = useState(22.9968);
-    const [destinationLng, setDestinationLng] = useState(120.2169);
-    const [searchTextOrigin, setSearchTextOrigin] = useState('');
-    const [searchTextDestination, setSearchTextDestination] = useState('');
+    const [lat, setLat] = useState(22.9968);
+    const [lng, setLng] = useState(120.2169);
+    const [searchText, setSearchText] = useState('');
     const [searchResults, setSearchResults] = useState([
         {
             location: 'Location 1',
@@ -54,48 +51,31 @@ function Home() {
     ]);
     
     const handleChange = (e) => {
-        if (e.target.id === 'origin-box') setSearchTextOrigin(e.target.value);
-        else setSearchTextDestination(e.target.value);
+        setSearchText(e.target.value);
     };
 
     const submit = () => {
-        if (searchTextOrigin !== '' && searchTextDestination !== '') {
-            axios.get(`https://geocode.maps.co/search?q=${searchTextOrigin}`)
-            .then(res => {
-                const resultsArray = res.data;
-                if (resultsArray.length > 0) {
-                    const targetLat = parseFloat(resultsArray[0].lat);
-                    const targetLng = parseFloat(resultsArray[0].lon);
-                    setOriginLat(targetLat);
-                    setOriginLng(targetLng);
-                    axios.get(`https://geocode.maps.co/search?q=${searchTextDestination}`)
-                    .then(res => {
-                        const resultsArray = res.data;
-                        if (resultsArray.length > 0) {
-                            const targetLat = parseFloat(resultsArray[0].lat);
-                            const targetLng = parseFloat(resultsArray[0].lon);
-                            setDestinationLat(targetLat);
-                            setDestinationLng(targetLng);
-                        }
-                    })
-                    .catch(err => {
-                        console.log(err);
-                    });
-                }
-            })
-            .catch(err => {
-                console.log(err);
-            });
-        }
+        const apiKey = process.env.REACT_APP_API_KEY;
+        const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(searchText)}&key=${apiKey}`;
+        
+        axios.get(geocodingUrl)
+        .then((res) => {
+            const results = res.data.results;
+            if (results.length > 0) {
+                const { lat, lng } = results[0].geometry.location;
+                setLat(lat);
+                setLng(lng);
+            }
+        })
+        .catch((error) => {
+            console.error('Geocoding error:', error);
+        });
     };
 
     const reset = () => {
-        setOriginLat(22.9968);
-        setOriginLng(120.2169);
-        setDestinationLat(22.9968);
-        setDestinationLng(120.2169);
-        setSearchTextOrigin('');
-        setSearchTextDestination('');
+        setLat(22.9968);
+        setLng(120.2169);
+        setSearchText('');
         setSearchResults([]);
     };
 
@@ -110,22 +90,14 @@ function Home() {
         <div id='home'>
             <GoogleMap
                 zoom={16}
-                center={{ lat: originLat, lng: originLng }}
+                center={{ lat: lat, lng: lng }}
                 mapContainerClassName='google-map'
             >
                 <Marker
                     zIndex={1}
-                    label='A'
                     position={{
-                        lat: originLat,
-                        lng: originLng
-                    }}
-                />
-                <Marker
-                    label='B'
-                    position={{
-                        lat: destinationLat,
-                        lng: destinationLng
+                        lat: lat,
+                        lng: lng
                     }}
                 />
                 <TrafficLayer />
@@ -139,21 +111,8 @@ function Home() {
                             className='form-control search-box'
                             placeholder='Starting point'
                             type='text'
-                            value={searchTextOrigin}
+                            value={searchText}
                             onChange={handleChange}  
-                        />
-                    </Autocomplete>
-                </div>
-                <div className='search-box-container'>
-                    <span className='fa fa-search form-control-feedback' />
-                    <Autocomplete>
-                        <input
-                            id='destination-box' 
-                            className='form-control search-box'
-                            placeholder='Destination'
-                            type='text'
-                            value={searchTextDestination}
-                            onChange={handleChange} 
                         />
                     </Autocomplete>
                 </div>
