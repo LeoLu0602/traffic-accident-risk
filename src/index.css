@@ -106,8 +106,6 @@ body {
     height: 82%;
     overflow: auto;
     margin-top: 2%;
-    padding-top: 2%;
-    padding-bottom: 2%;
 }
 
 #search-results::-webkit-scrollbar {
@@ -147,7 +145,7 @@ body {
     width: 90vw;
     height: 500px;
     margin-left: 5vw;
-    margin-bottom: 1vh;
+    margin-bottom: 3vh;
 }
 
 .graph-row:first-child {
