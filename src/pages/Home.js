@@ -65,7 +65,7 @@ function Home() {
         'Sinshih': '新市區',
         'Cigu': '七股區',
         'Annan': '安南區',
-        'Youngkan': '永康區',
+        'Yongkang': '永康區',
         'Anping': '安平區',
         'South': '南區',
         'Gueiren': '歸仁區',
