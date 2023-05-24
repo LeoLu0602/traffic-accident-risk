@@ -4,6 +4,7 @@ function Eda() {
     const explanation1 = <div className='explanation'>
                             以下是我們將不同車禍要素對於交通風險的影響進行分析。
                             <br/>
+                            <br/>
                             圖表附有篩選器，可以選擇列表內的影響要素、地區分布、時間段，
                             <br/>調整圖表中內容，使用者能自行操作圖表，即時看到感興趣的車禍狀況分析圖表。
                          </div>;

@@ -146,6 +146,7 @@ body {
     height: 500px;
     margin-left: 5vw;
     margin-bottom: 3vh;
+    font-size: 0.9em;
 }
 
 .graph-row:first-child {
