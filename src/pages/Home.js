@@ -63,7 +63,7 @@ function Home() {
         'Sigan': '西港區',
         'Anding': '安定區',
         'Sinshih': '新市區',
-        'Cigu': '七股區',
+        'Qigu': '七股區',
         'Annan': '安南區',
         'Yongkang': '永康區',
         'Anping': '安平區',
@@ -89,6 +89,28 @@ function Home() {
         'East': '東區',
         'North': '北區',
     };
+
+    const getWeather = (district) => {
+        const current_time = new Date();
+        const current_hour = current_time.getHours();
+        const time = current_hour < 6 ? 0 : current_hour < 18 ? 1 : 2;
+        const url = 'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-079?Authorization=CWB-C8017091-8B5F-4A12-AB41-E99EF815C107&elementName=WeatherDescription';
+
+        axios.get(url)
+        .then((res) => {
+            const data = res.data;
+            const weather = {};
+            for (let i = 0; i < 37; i++) {
+                const name = data['records']['locations'][0]['location'][i]['locationName'];
+                const weatherElement = data["records"]["locations"][0]['location'][i]['weatherElement'][0]['time'][time]['elementValue'][0]['value'].split('。')[0];
+                weather[name] = weatherElement;
+            }
+            console.log(district, weather[district]);
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    };
     
     const handleChange = (e) => {
         setSearchText(e.target.value);
@@ -111,8 +133,7 @@ function Home() {
                     const locationArray = res.data.plus_code.compound_code.split(' ');
                     const districtIndex = locationArray.indexOf('District,');
                     const district = locationArray.slice(1, districtIndex).join(' ');
-                    console.log(district);
-                    console.log(districtEnglish2Chinese[district]);
+                    getWeather(districtEnglish2Chinese[district])
                 })
                 .catch((error) => {
                     console.error('Reverse geocoding error:', error);
