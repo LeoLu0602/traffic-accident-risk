@@ -89,6 +89,45 @@ function Home() {
         'East': '東區',
         'North': '北區',
     };
+    
+    const handleChange = (e) => {
+        setSearchText(e.target.value);
+    };
+
+    const submit = () => {
+        const apiKey = process.env.REACT_APP_API_KEY;
+        const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(searchText)}&key=${apiKey}`;
+        
+        axios.get(geocodingUrl)
+        .then((res) => {
+            const results = res.data.results;
+            if (results.length > 0) {
+                const { lat, lng } = results[0].geometry.location;
+                setLat(lat);
+                setLng(lng);
+                reverseGeocoding(lat, lng);
+            }
+        })
+        .catch((error) => {
+            console.error('Geocoding error:', error);
+        });
+    };
+
+    const reverseGeocoding = (lat, lng) => {
+        const apiKey = process.env.REACT_APP_API_KEY;
+        const reverseGeocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`;
+
+        axios.get(reverseGeocodingUrl)
+        .then((res) => {
+            const locationArray = res.data.plus_code.compound_code.split(' ');
+            const districtIndex = locationArray.indexOf('District,');
+            const district = locationArray.slice(1, districtIndex).join(' ');
+            getWeather(districtEnglish2Chinese[district])
+        })
+        .catch((error) => {
+            console.error('Reverse geocoding error:', error);
+        });
+    };
 
     const getWeather = (district) => {
         const current_time = new Date();
@@ -109,39 +148,6 @@ function Home() {
         })
         .catch((error) => {
             console.error(error);
-        });
-    };
-    
-    const handleChange = (e) => {
-        setSearchText(e.target.value);
-    };
-
-    const submit = () => {
-        const apiKey = process.env.REACT_APP_API_KEY;
-        const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(searchText)}&key=${apiKey}`;
-        
-        axios.get(geocodingUrl)
-        .then((res) => {
-            const results = res.data.results;
-            if (results.length > 0) {
-                const { lat, lng } = results[0].geometry.location;
-                setLat(lat);
-                setLng(lng);
-
-                axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`)
-                .then((res) => {
-                    const locationArray = res.data.plus_code.compound_code.split(' ');
-                    const districtIndex = locationArray.indexOf('District,');
-                    const district = locationArray.slice(1, districtIndex).join(' ');
-                    getWeather(districtEnglish2Chinese[district])
-                })
-                .catch((error) => {
-                    console.error('Reverse geocoding error:', error);
-                });
-            }
-        })
-        .catch((error) => {
-            console.error('Geocoding error:', error);
         });
     };
 
