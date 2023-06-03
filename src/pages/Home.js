@@ -9,45 +9,9 @@ function Home() {
     const [searchText, setSearchText] = useState('');
     const [searchResults, setSearchResults] = useState([
         {
-            location: 'Location 1',
+            location: 'Test Location',
             risk: 2
-        },
-        {
-            location: 'Location 2',
-            risk: 1
-        },
-        {
-            location: 'Location 3',
-            risk: 3
-        },
-        {
-            location: 'Location 4',
-            risk: 2
-        },
-        {
-            location: 'Location 5',
-            risk: 1
-        },
-        {
-            location: 'Location 6',
-            risk: 3
-        },
-        {
-            location: 'Location 7',
-            risk: 2
-        },
-        {
-            location: 'Location 8',
-            risk: 1
-        },
-        {
-            location: 'Location 9',
-            risk: 1
-        },
-        {
-            location: 'Location 10',
-            risk: 2
-        },
+        }
     ]);
     
     const districtEnglish2Chinese = {
@@ -154,17 +118,18 @@ function Home() {
     };
 
     const sendRequest = (district, weather) => {
-        // const backendUrl = '';
-
-        // axios.get(backendUrl)
-        // .then((res) => {
-        //     setSearchResults();
-        // })
-        // .catch((error) => {
-        //     console.error('Request error', error);
-        // });
-        
         console.log(district, weather);
+
+        const backendUrl = `http://58.114.143.42:8000/api/myfunction?district=東區&weather=陰`;
+
+        axios.get(backendUrl)
+        .then((res) => {
+            console.log(res.data);
+            // setSearchResults(res.data);
+        })
+        .catch((error) => {
+            console.error('Request error', error);
+        });
     };
 
     const reset = () => {
