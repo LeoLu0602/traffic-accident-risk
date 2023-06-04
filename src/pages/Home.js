@@ -7,12 +7,7 @@ function Home() {
     const [lat, setLat] = useState(22.9968);
     const [lng, setLng] = useState(120.2169);
     const [searchText, setSearchText] = useState('');
-    const [searchResults, setSearchResults] = useState([
-        {
-            location: 'Test Location',
-            risk: 2
-        }
-    ]);
+    const [searchResults, setSearchResults] = useState([]);
     
     const districtEnglish2Chinese = {
         'Houbi': '後壁區',
@@ -118,14 +113,10 @@ function Home() {
     };
 
     const sendRequest = (district, weather) => {
-        console.log(district, weather);
-
-        const backendUrl = `http://58.114.143.42:8000/api/myfunction?district=東區&weather=陰`;
-
+        const backendUrl = `http://58.114.143.42:8000/api/myfunction?district=${district}&weather=${weather}`;
         axios.get(backendUrl)
         .then((res) => {
-            console.log(res.data);
-            // setSearchResults(res.data);
+            setSearchResults(res.data);
         })
         .catch((error) => {
             console.error('Request error', error);
