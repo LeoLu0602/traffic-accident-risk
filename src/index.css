@@ -18,6 +18,7 @@ body {
     height: 10vh;
     padding: 0px;
     background-color: #4472C4;
+    opacity: 0.95;
 }
 
 .nav-item {
@@ -93,25 +94,17 @@ body {
     padding-right: 4vw;
 }
 
-.search-box-container {
-    display: block;
-    width: 100%;
+.search-box {
+    width: 36vw;
     height: 8%;
+    font-weight: bold;
+    border-radius: 10px;
+    border-width: 0px;
+    padding-left: 1vw;
 }
 
-.form-control {
-    padding-left: 2.375rem;
-}
-
-.form-control-feedback {
-    position: absolute;
-    display: block;
-    width: 2.375rem;
-    height: 2.375rem;
-    line-height: 2.375rem;
-    text-align: center;
-    pointer-events: none;
-    color: #777;
+.search-box:focus {
+    outline: none;
 }
 
 #btn-container {
@@ -119,6 +112,7 @@ body {
     justify-content: space-between;
     width: 100%;
     height: 8%;
+    margin-top: 2%;
 }
 
 #submit-btn {
@@ -166,9 +160,10 @@ body {
 
 #search-results {
     width: 100%;
-    height: 82%;
+    height: 80%;
     overflow: auto;
     margin-top: 2%;
+    border: solid 2px #aaa;
 }
 
 #search-results::-webkit-scrollbar {

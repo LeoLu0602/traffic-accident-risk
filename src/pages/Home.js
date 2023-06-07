@@ -524,16 +524,13 @@ function Home() {
                     <TrafficLayer />    
                 </GoogleMap>
                 <div className='home-right'>
-                    <div className='search-box-container'>
-                        <span className='fa fa-search form-control-feedback' />
-                        <input
-                            className='form-control search-box'
-                            placeholder='輸入地點'
-                            type='text'
-                            value={searchText}
-                            onChange={handleChange}  
-                        />
-                    </div>
+                    <input
+                        className='search-box'
+                        placeholder='輸入地點'
+                        type='text'
+                        value={searchText}
+                        onChange={handleChange}  
+                    />
                     <div id='btn-container'>
                         <button id='submit-btn' onClick={submit}>搜尋</button>
                         <button id='reset-btn' onClick={reset}>重設</button>
