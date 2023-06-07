@@ -7,56 +7,7 @@ function Home() {
     const [lat, setLat] = useState(22.9968);
     const [lng, setLng] = useState(120.2169);
     const [searchText, setSearchText] = useState('');
-    const [searchResults, setSearchResults] = useState([
-        {
-            location: 'test',
-            risk: 2
-        },
-        {
-            location: 'test',
-            risk: 3
-        },
-        {
-            location: 'test',
-            risk: 1
-        },
-        {
-            location: 'test',
-            risk: 2
-        },
-        {
-            location: 'test',
-            risk: 2
-        },
-        {
-            location: 'test',
-            risk: 3
-        },
-        {
-            location: 'test',
-            risk: 3
-        },
-        {
-            location: 'test',
-            risk: 1
-        },
-        {
-            location: 'test',
-            risk: 2
-        },
-        {
-            location: 'test',
-            risk: 3
-        },
-        {
-            location: 'test',
-            risk: 2
-        },
-        {
-            location: 'test',
-            risk: 1
-        },
-    ]);
+    const [searchResults, setSearchResults] = useState([]);
     
     const districtEnglish2Chinese = {
         'Houbi': '後壁區',
