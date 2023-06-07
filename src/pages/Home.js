@@ -436,7 +436,6 @@ function Home() {
             }
         })
         .catch((error) => {
-            alert('Error');
             console.error('Geocoding error:', error);
         });
     };
@@ -462,7 +461,6 @@ function Home() {
             }
         })
         .catch((error) => {
-            alert('Error');
             console.error('Reverse geocoding error:', error);
         });
     };
@@ -487,7 +485,6 @@ function Home() {
             sendRequest(district, simplifiedWeather[weather[district]]);
         })
         .catch((error) => {
-            alert('Error');
             console.error('Weather error:', error);
         });
     };
@@ -501,7 +498,6 @@ function Home() {
             setSearchResults(res.data);
         })
         .catch((error) => {
-            alert('Error');
             console.error('Request error', error);
         });
     };
