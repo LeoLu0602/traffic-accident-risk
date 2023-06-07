@@ -3,7 +3,7 @@
 }
 
 body {
-    background-color: #DAE3F3;
+    background-color: #e9ecf1;
 }
 
 .navbar {
@@ -29,21 +29,35 @@ body {
     border-radius: 15px 15px 0px 0px;
 }
 
-#home {
+#navbar-brand {
+    position: absolute;
+    right: 1vw;
+    font-weight: bolder;
+    color: white;
+}
+
+.home-top {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    height: 9vh;
+    text-align: center;
+}
+
+.home-bottom {
     display: flex;
-    margin-top: 5vh;
+    height: 82vh;
 }
 
 .google-map {
     margin-left: 4vw;
     margin-right: 4vw;
     width: 52vw;
-    height: 85vh;
+    height: 96%;
 }
 
-#home-right {
+.home-right {
     width: 40vw;
-    height: 85vh;
+    height: 96%;
     padding-right: 4vw;
 }
 

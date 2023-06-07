@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { GoogleMap, useLoadScript, Marker, TrafficLayer } from '@react-google-maps/api';
 import Result from '../components/Result';
@@ -7,7 +7,56 @@ function Home() {
     const [lat, setLat] = useState(22.9968);
     const [lng, setLng] = useState(120.2169);
     const [searchText, setSearchText] = useState('');
-    const [searchResults, setSearchResults] = useState([]);
+    const [searchResults, setSearchResults] = useState([
+        {
+            location: 'test',
+            risk: 2
+        },
+        {
+            location: 'test',
+            risk: 3
+        },
+        {
+            location: 'test',
+            risk: 1
+        },
+        {
+            location: 'test',
+            risk: 2
+        },
+        {
+            location: 'test',
+            risk: 2
+        },
+        {
+            location: 'test',
+            risk: 3
+        },
+        {
+            location: 'test',
+            risk: 3
+        },
+        {
+            location: 'test',
+            risk: 1
+        },
+        {
+            location: 'test',
+            risk: 2
+        },
+        {
+            location: 'test',
+            risk: 3
+        },
+        {
+            location: 'test',
+            risk: 2
+        },
+        {
+            location: 'test',
+            risk: 1
+        },
+    ]);
     
     const districtEnglish2Chinese = {
         'Houbi': '後壁區',
@@ -113,9 +162,12 @@ function Home() {
     };
 
     const sendRequest = (district, weather) => {
-        const backendUrl = `http://58.114.143.42:8000/api/myfunction?district=${district}&weather=${weather}`;
+        console.log(district, weather);
+        const backendUrl = `http://10.7.78.40:8000/?district=${district}&weather=${weather}`;
+        setSearchResults([]);
         axios.get(backendUrl)
         .then((res) => {
+            console.log(res.data);
             setSearchResults(res.data);
         })
         .catch((error) => {
@@ -135,41 +187,55 @@ function Home() {
         libraries: ['places']
     });
 
+    useEffect(() => {
+        const script = document.createElement('script');
+
+        script.src = 'https://app1.weatherwidget.org/js/?id=ww_28de88ee392a8';
+        script.async = true;
+    
+        document.body.appendChild(script);
+    }, []);
+
     if (!isLoaded) return <div />;
 
     return (
         <div id='home'>
-            <GoogleMap
-                zoom={16}
-                center={{ lat: lat, lng: lng }}
-                mapContainerClassName='google-map'
-            >
-                <Marker
-                    zIndex={1}
-                    position={{
-                        lat: lat,
-                        lng: lng
-                    }}
-                />
-                <TrafficLayer />
-            </GoogleMap>
-            <div id='home-right'>
-                <div className='search-box-container'>
-                    <span className='fa fa-search form-control-feedback' />
-                    <input
-                        className='form-control search-box'
-                        placeholder='Starting point'
-                        type='text'
-                        value={searchText}
-                        onChange={handleChange}  
+            <div className='home-top'>
+                <div id="ww_28de88ee392a8" v='1.3' loc='id' a='{"t":"responsive","lang":"zh-Hant","sl_lpl":1,"ids":["wl9234"],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'>Weather for the Following Location: <a href="https://2ua.org/de/twn/tainan/karte/" id="ww_28de88ee392a8_u" target="_blank">karte von Tainan, Taiwan</a></div>
+            </div>
+            <div className='home-bottom'>
+                <GoogleMap
+                    zoom={16}
+                    center={{ lat: lat, lng: lng }}
+                    mapContainerClassName='google-map'
+                >
+                    <Marker
+                        zIndex={1}
+                        position={{
+                            lat: lat,
+                            lng: lng
+                        }}
                     />
-                </div>
-                <div id='btn-container'>
-                    <button id='submit-btn' onClick={submit}>Submit</button>
-                    <button id='reset-btn' onClick={reset}>Reset</button>
-                </div>
-                <div id='search-results'>
-                    {searchResults.sort((a, b) => b.risk - a.risk).map((result, i) => <Result key={i} info={result} />)}
+                    <TrafficLayer />    
+                </GoogleMap>
+                <div className='home-right'>
+                    <div className='search-box-container'>
+                        <span className='fa fa-search form-control-feedback' />
+                        <input
+                            className='form-control search-box'
+                            placeholder='輸入地點、地標、地址'
+                            type='text'
+                            value={searchText}
+                            onChange={handleChange}  
+                        />
+                    </div>
+                    <div id='btn-container'>
+                        <button id='submit-btn' onClick={submit}>搜尋</button>
+                        <button id='reset-btn' onClick={reset}>重設</button>
+                    </div>
+                    <div id='search-results'>
+                        {searchResults.sort((a, b) => b.risk - a.risk).map((result, i) => <Result key={i} info={result} />)}
+                    </div>
                 </div>
             </div>
         </div>

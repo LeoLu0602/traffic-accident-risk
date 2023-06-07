@@ -18,6 +18,7 @@ function App() {
                         <a href='/eda' className={path === '/eda' ? ' nav-link nav-active' : 'nav-link'}>EDA</a>
                     </li>
                 </ul>
+                <div id='navbar-brand'>臺南市交通事故風險地圖</div>
             </nav>
             <Routes>
                 <Route path='/' element={<Home />}></Route>
