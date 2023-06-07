@@ -11,23 +11,28 @@ body {
     position: fixed;
     left: 0;
     top: 0;
+    display: flex;
+    justify-content: flex-start;
     z-index: 1;
     width: 100%;
-    height: 6vh;
+    height: 10vh;
     padding: 0px;
     background-color: #4472C4;
 }
 
 .nav-item {
-    min-width: 12vw;
-    text-align: center;
-}
-
-.nav-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12vw;
+    height: 100%;
+    font-size: 3vh;
     font-weight: bold;
     color: white;
-    height: 6vh;
-    font-size: 1.2em;
+}
+
+.nav-item:hover:not(.nav-active) {
+    background-color: #2957a6;
 }
 
 .nav-active {
@@ -35,34 +40,35 @@ body {
     background-color: var(--background-color);
 }
 
-#navbar-brand {
-    position: absolute;
-    min-width: 12vw;
-    right: 1vw;
-    cursor: pointer;
-}
-
-#navbar-brand > a {
-    font-weight: bolder;
-    font-size: 1.2em;
+.nav-brand {
+    position: fixed;
+    right: 4vw;
+    top: 0;
+    width: auto;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3vh;
+    font-weight: bold;
     color: white;
 }
 
-#navbar-brand > a:hover {
+.nav-brand:hover {
     color: black;
 }
 
 .home-top {
-    margin-top: 6vh;
+    margin-top: 10vh;
     margin-bottom: 4vh;
     height: 10vh;
     text-align: center;
     overflow: hidden;
-    background-color: black;
+    background-color: var(--background-color);
 }
 
 #ww_04a1b20ec59db {
-    color: black;
+    color: var(--background-color);
 }
 
 #ww_04a1b20ec59db > a {
@@ -71,19 +77,19 @@ body {
 
 .home-bottom {
     display: flex;
-    height: 80vh;
+    height: 76vh;
 }
 
 .google-map {
     margin-left: 4vw;
     margin-right: 4vw;
     width: 52vw;
-    height: 76vh;
+    height: 72vh;
 }
 
 .home-right {
     width: 40vw;
-    height: 76vh;
+    height: 72vh;
     padding-right: 4vw;
 }
 
@@ -235,7 +241,7 @@ body {
     width: 90vw;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 11vh;
+    margin-top: 15vh;
     margin-bottom: 5vh;
     text-align: center;
     font-weight: bold;

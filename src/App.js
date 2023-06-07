@@ -9,19 +9,17 @@ function App() {
 
     return(
         <Router>
-            <nav className='navbar navbar-expand'>
-                <ul className='navbar-nav'>
-                    <li className='nav-item'>
-                        <a href='/' className={path === '/' ? ' nav-link nav-active' : 'nav-link'}>首頁</a>
-                    </li>
-                    <li className='nav-item'>
-                        <a href='/eda' className={path === '/eda' ? ' nav-link nav-active' : 'nav-link'}>資料分析</a>
-                    </li>
-                </ul>
-                <div id='navbar-brand'>
-                    <a href='/' className='no-underline'>臺南市交通事故風險地圖</a>
-                </div>
-            </nav>
+            <div className='navbar'>
+                <a href='/' className={ path === '/' ? 'nav-item nav-active no-underline' : 'nav-item no-underline' }>
+                    <div>首頁</div>
+                </a>
+                <a href='/eda' className={ path === '/eda' ? 'nav-item nav-active no-underline' : 'nav-item no-underline' }>
+                    <div>資料分析</div>
+                </a>
+                <a href='/' className='nav-brand no-underline'>
+                    <div>臺南市交通事故風險地圖</div>
+                </a>
+            </div>
             <Routes>
                 <Route path='/' element={<Home />}></Route>
                 <Route path='/eda' element={<Eda />}></Route>
