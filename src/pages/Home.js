@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { GoogleMap, useLoadScript, Marker, TrafficLayer } from '@react-google-maps/api';
 import Result from '../components/Result';
@@ -426,14 +426,17 @@ function Home() {
         axios.get(geocodingUrl)
         .then((res) => {
             const results = res.data.results;
+
             if (results.length > 0) {
                 const { lat, lng } = results[0].geometry.location;
-                setLat(lat);
-                setLng(lng);
                 reverseGeocoding(lat, lng);
+            }
+            else {
+                alert('請重新輸入地點');
             }
         })
         .catch((error) => {
+            alert('Error');
             console.error('Geocoding error:', error);
         });
     };
@@ -447,9 +450,19 @@ function Home() {
             const locationArray = res.data.plus_code.compound_code.split(' ');
             const districtIndex = locationArray.indexOf('District,');
             const district = locationArray.slice(1, districtIndex).join(' ');
-            getWeather(districtEnglish2Chinese[district]);
+
+            if (district in districtEnglish2Chinese) {
+                // (lat, lng) is in Tainan
+                setLat(lat);
+                setLng(lng);
+                getWeather(districtEnglish2Chinese[district]);
+            }
+            else {
+                alert('請重新輸入地點');
+            }
         })
         .catch((error) => {
+            alert('Error');
             console.error('Reverse geocoding error:', error);
         });
     };
@@ -464,35 +477,40 @@ function Home() {
         .then((res) => {
             const data = res.data;
             const weather = {};
+
             for (let i = 0; i < 37; i++) {
                 const name = data['records']['locations'][0]['location'][i]['locationName'];
                 const weatherElement = data['records']['locations'][0]['location'][i]['weatherElement'][0]['time'][time]['elementValue'][0]['value'].split('。')[0];
                 weather[name] = weatherElement;
             }
+
             sendRequest(district, simplifiedWeather[weather[district]]);
         })
         .catch((error) => {
+            alert('Error');
             console.error('Weather error:', error);
         });
     };
 
     const sendRequest = (district, weather) => {
-        console.log(district, weather);
         const backendUrl = `http://10.7.78.40:8000/?district=${district}&weather=${weather}`;
         setSearchResults([]);
+
         axios.get(backendUrl)
         .then((res) => {
-            console.log(res.data);
             setSearchResults(res.data);
         })
         .catch((error) => {
+            alert('Error');
             console.error('Request error', error);
         });
     };
 
     const reset = () => {
-        setLat(22.9968);
+        // reset to NCKU's lat and lng
+        setLat(22.9968); 
         setLng(120.2169);
+
         setSearchText('');
         setSearchResults([]);
     };
@@ -503,18 +521,26 @@ function Home() {
     });
 
     useEffect(() => {
+        // for weather widget
         const script = document.createElement('script');
+
         script.src = 'https://app1.weatherwidget.org/js/?id=ww_04a1b20ec59db';
         script.async = true;
+
         document.body.appendChild(script);
     }, []);
 
-    if (!isLoaded) return <div />;
+    if (!isLoaded) {
+        return <div />;
+    }
 
     return (
         <div id='home'>
             <div className='home-top'>
-                <div id='ww_04a1b20ec59db' v='1.3' loc='id' a='{"t":"responsive","lang":"zh-Hant","sl_lpl":1,"ids":["wl9234"],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722","sl_tof":"7"}'>Weather for the Following Location: <a href="https://2ua.org/de/twn/tainan/karte/" id="ww_04a1b20ec59db_u" target="_blank">karte von Tainan, Taiwan</a></div>
+                <div id='ww_04a1b20ec59db' v='1.3' loc='id' a='{"t":"responsive","lang":"zh-Hant","sl_lpl":1,"ids":["wl9234"],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722","sl_tof":"7"}'>
+                    Weather for the Following Location: 
+                    <a href='https://2ua.org/de/twn/tainan/karte/' id='ww_04a1b20ec59db_u' target='_blank'>karte von Tainan, Taiwan</a>
+                </div>
             </div>
             <div className='home-bottom'>
                 <GoogleMap
@@ -545,7 +571,7 @@ function Home() {
                         <button id='reset-btn' onClick={reset}>重設</button>
                     </div>
                     <div id='search-results'>
-                        {searchResults.sort((a, b) => b.risk - a.risk).map((result, i) => <Result key={i} info={result} />)}
+                        { searchResults.sort((a, b) => b.risk - a.risk).map((result, i) => <Result key={i} info={result} />) }
                     </div>
                 </div>
             </div>
