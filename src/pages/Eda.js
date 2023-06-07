@@ -2,41 +2,48 @@ import GraphRow from '../components/GraphRow';
 
 function Eda() {
     const explanation1 = <div className='explanation'>
+                            <br/>
                             以下是我們將不同車禍要素對於交通風險的影響進行分析。
                             <br/>
                             <br/>
-                            圖表附有篩選器，可以選擇列表內的影響要素、地區分布、時間段，
-                            <br/>調整圖表中內容，使用者能自行操作圖表，即時看到感興趣的車禍狀況分析圖表。
+                            圖表附有篩選器，可以選擇列表內的影響要素、地區分布、時間段，調整圖表中內容，使用者能自行操作圖表，即時看到感興趣的車禍狀況分析圖表。
                          </div>;
+
     const explanation2 = <div className='explanation'>
+                            <br/>
                             分類的標準為 :
                             <br/>
                             <br/>
-                            <ul>
-                                <li>孩童: 18 歲以下</li>
-                                <li>成人: 19 - 64 歲</li>
-                                <li>長者: 65 歲以上</li>
-                            </ul>
+                            孩童: 18 歲以下
                             <br/>
-                            從圖表中可以看出
+                            成人: 19 - 64 歲
+                            <br/>
+                            長者: 65 歲以上
                             <br/>
                             <br/>
-                            <ul>
-                                <li>孩童、成年人、長者三者的車禍發生都是集中在上下班通勤時段。</li>
-                                <br/>
-                                <li>其中孩童的分布跟成年人的類似，可能是因為部分成年人開車帶小孩上下學，導致孩童的風險分布是跟成年人呈現正相關的。  </li>
-                            </ul>
+                            <br/>
+                            從圖表中可以看出 :
+                            <br/>
+                            <br/>
+                            孩童、成年人、長者三者的車禍發生都是集中在上下班通勤時段。
+                            <br/>
+                            <br/>
+                            其中孩童的分布跟成年人的類似，可能是因為部分成年人開車帶小孩上下學，導致孩童的風險分布是跟成年人呈現正相關的。
                          </div>;
+
     const explanation3 = <div className='explanation'>
-                            <ul>
-                                <li>男女車禍發生的時間分布長得很類似，推測是男性駕駛的人數較多，產生的結果。</li>
-                                <br/>
-                                <li>以美國的統計數據為例，有 1.057 億女性擁有駕照，1.043 億男性擁有駕照。但是男性每年造成約 610 萬起事故，女性每年造成 440 萬起事故。</li>
-                                <br/>
-                                <li>所以推測性別是影響因素之一。</li>
-                            </ul>
+                            <br/>
+                            男女車禍發生的時間分布長得很類似，推測是男性駕駛的人數較多，產生的結果。
+                            <br/>
+                            <br/>
+                            以美國的統計數據為例，有 1.057 億女性擁有駕照，1.043 億男性擁有駕照。但是男性每年造成約 610 萬起事故，女性每年造成 440 萬起事故。
+                            <br/>
+                            <br/>
+                            所以推測性別是影響因素之一。
                          </div>;
+
     const explanation4 = <div className='explanation'>
+                            <br/>
                             肇因編號的對應名稱為：
                             <br/>
                             <br/>
@@ -56,12 +63,13 @@ function Eda() {
                             <br/>
                             細項分布的比例根據地域相差較大，比起其他因素更受地區影響，推測是跟道路設計有關。
                          </div>;
+
     const explanation5 = <div className='explanation'>
-                            <ul>
-                                <li>貨車在圖表上的高峰較為平滑，跟上班時段有關。</li>
-                                <br/>
-                                <li>行人發生交通事故的比例很高，對於用路人很不友善。</li>
-                            </ul>
+                            <br/>
+                            貨車在圖表上的高峰較為平滑，跟上班時段有關。
+                            <br/>
+                            <br/>
+                            行人發生交通事故的比例很高，對於用路人很不友善。
                          </div>;
 
     return (
@@ -76,22 +84,23 @@ function Eda() {
                 總結
                 <br/>
                 <br/>
-                <ul>
-                    <li>車禍發生聚集在通勤時段是很正常、合理的，但我們要如何在車流量大的情況避免車禍的發生，是我們要關注的議題。</li>
-                    <br />
-                    <li>台南的交通事故傷亡比例是全國最高，駕駛與行人要小心用路、注意安全。</li>
-                    <br />
-                    <li>道路規劃、人行道設計是台南、甚至台灣交通的通病，等待我們一同解決這難題。</li>
-                    <br />
-                    <li>資料來源 :
-                        <br/>
-                        <br />
-                        <a className='no-underline' href='https://data.tainan.gov.tw/dataset/policedata016'>臺南市道路交通事故原因傷亡統計</a>
-                        <br/>
-                        <br />
-                        <a className='no-underline' href='https://data.tainan.gov.tw/dataset/trafowner'>臺南市道路交通事故當事者區分統計</a>
-                    </li>
-                </ul>
+                1. 車禍發生聚集在通勤時段是很正常、合理的，但我們要如何在車流量大的情況避免車禍的發生，是我們要關注的議題。
+                <br/>
+                <br/>
+                2. 台南的交通事故傷亡比例是全國最高，駕駛與行人要小心用路、注意安全。
+                <br/>
+                <br/>
+                3. 道路規劃、人行道設計是台南、甚至台灣交通的通病，等待我們一同解決這難題。
+                <br/>
+                <br/>
+                <br/>
+                資料來源 :
+                <br/>
+                <br />
+                <a className='no-underline' href='https://data.tainan.gov.tw/dataset/policedata016'>臺南市道路交通事故原因傷亡統計</a>
+                <br/>
+                <br/>
+                <a className='no-underline' href='https://data.tainan.gov.tw/dataset/trafowner'>臺南市道路交通事故當事者區分統計</a>
             </div>
         </div>
     );

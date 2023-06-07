@@ -1,63 +1,89 @@
 * {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Microsoft JhengHei;
 }
 
 body {
-    background-color: #e9ecf1;
+    --background-color: #e9ecf1;
+    background-color: var(--background-color);
 }
 
 .navbar {
-    display: fixed;
-    height: 5vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 6vh;
     padding: 0px;
     background-color: #4472C4;
 }
 
 .nav-item {
-    min-width: 10vw;
+    min-width: 12vw;
     text-align: center;
 }
 
 .nav-link {
     font-weight: bold;
     color: white;
+    height: 6vh;
+    font-size: 1.2em;
 }
 
 .nav-active {
     color: #4472C4;
-    background-color: #DAE3F3;
-    border-radius: 15px 15px 0px 0px;
+    background-color: var(--background-color);
 }
 
 #navbar-brand {
     position: absolute;
+    min-width: 12vw;
     right: 1vw;
+    cursor: pointer;
+}
+
+#navbar-brand > a {
     font-weight: bolder;
+    font-size: 1.2em;
     color: white;
 }
 
+#navbar-brand > a:hover {
+    color: black;
+}
+
 .home-top {
-    margin-top: 2vh;
-    margin-bottom: 2vh;
-    height: 9vh;
+    margin-top: 6vh;
+    margin-bottom: 4vh;
+    height: 10vh;
     text-align: center;
+    overflow: hidden;
+    background-color: black;
+}
+
+#ww_04a1b20ec59db {
+    color: black;
+}
+
+#ww_04a1b20ec59db > a {
+    visibility: hidden;
 }
 
 .home-bottom {
     display: flex;
-    height: 82vh;
+    height: 80vh;
 }
 
 .google-map {
     margin-left: 4vw;
     margin-right: 4vw;
     width: 52vw;
-    height: 96%;
+    height: 76vh;
 }
 
 .home-right {
     width: 40vw;
-    height: 96%;
+    height: 76vh;
     padding-right: 4vw;
 }
 
@@ -90,7 +116,7 @@ body {
 }
 
 #submit-btn {
-    width: 50%;
+    width: 49.5%;
     color: white;
     font-weight: bold;
     background-color: green;
@@ -102,8 +128,21 @@ body {
     background-color: rgb(0, 48, 0);
 }
 
+@keyframes move-down {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(10%);
+    }
+}
+
+#submit-btn:active {
+    animation: move-down 0.1s forwards;
+}
+
 #reset-btn {
-    width: 50%;
+    width: 49.5%;
     color: white;
     font-weight: bold;
     background-color: red;
@@ -113,6 +152,10 @@ body {
 
 #reset-btn:hover {
     background-color: rgb(175, 0, 0);
+}
+
+#reset-btn:active {
+    animation: move-down 0.1s forwards;
 }
 
 #search-results {
@@ -158,14 +201,9 @@ body {
     position: relative;
     display: flex;
     width: 90vw;
-    height: 500px;
+    height: 600px;
     margin-left: 5vw;
-    margin-bottom: 3vh;
-    font-size: 0.9em;
-}
-
-.graph-row:first-child {
-    margin-top: 5vh;
+    margin-bottom: 5vh;
 }
 
 .graph {
@@ -186,7 +224,7 @@ body {
     bottom: 0;
     width: 60%;
     height: 37px;
-    background-color: #e9ecf1;
+    background-color: var(--background-color);
 }
 
 .no-underline {
@@ -197,10 +235,11 @@ body {
     width: 90vw;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 5vh;
+    margin-top: 11vh;
     margin-bottom: 5vh;
     text-align: center;
     font-weight: bold;
+    font-size: 1.2em;
 }
 
 #eda-conclusion {
@@ -209,4 +248,5 @@ body {
     margin-right: auto;
     margin-bottom: 10vh;
     font-weight: bold;
+    font-size: 1.2em;
 }
