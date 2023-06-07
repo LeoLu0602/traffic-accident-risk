@@ -409,7 +409,17 @@ function Home() {
         setSearchText(e.target.value);
     };
 
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            submit();
+        }
+    };
+
     const submit = () => {
+        if (searchText === '') {
+            return;
+        }
+
         const apiKey = process.env.REACT_APP_API_KEY;
         const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(searchText)}&key=${apiKey}`;
         
@@ -494,10 +504,8 @@ function Home() {
 
     useEffect(() => {
         const script = document.createElement('script');
-
         script.src = 'https://app1.weatherwidget.org/js/?id=ww_04a1b20ec59db';
         script.async = true;
-
         document.body.appendChild(script);
     }, []);
 
@@ -529,7 +537,8 @@ function Home() {
                         placeholder='輸入地點'
                         type='text'
                         value={searchText}
-                        onChange={handleChange}  
+                        onChange={handleChange}
+                        onKeyDown={handleKeyDown}  
                     />
                     <div id='btn-container'>
                         <button id='submit-btn' onClick={submit}>搜尋</button>
