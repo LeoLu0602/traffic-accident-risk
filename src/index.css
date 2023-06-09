@@ -119,13 +119,13 @@ body {
     width: 49.5%;
     color: white;
     font-weight: bold;
-    background-color: rgb(33, 168, 33);
+    background-color: #4472C4;
     border-width: 0px;
     cursor: pointer;
 }
 
 #submit-btn:hover {
-    background-color: green;
+    background-color: #183b76;
 }
 
 @keyframes move-down {
@@ -145,13 +145,13 @@ body {
     width: 49.5%;
     color: white;
     font-weight: bold;
-    background-color: red;
+    background-color: #183b76;
     border-width: 0px;
     cursor: pointer;
 }
 
 #reset-btn:hover {
-    background-color: rgb(175, 0, 0);
+    background-color: #0b234e;
 }
 
 #reset-btn:active {
@@ -188,15 +188,15 @@ body {
 }
 
 .green {
-    background-color: rgb(33, 168, 33);
+    background-color: #1FB215;
 }
 
 .yellow {
-    background-color: yellow;
+    background-color: #FBFF14;
 }
 
 .red {
-    background-color: red;
+    background-color: #ED2121;
 }
 
 .graph-row {
