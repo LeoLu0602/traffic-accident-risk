@@ -490,7 +490,7 @@ function Home() {
     };
 
     const sendRequest = (district, weather) => {
-        const backendUrl = `http://58.114.143.42:8000/?district=${district}&weather=${weather}`;
+        const backendUrl = `https://traffic-accident-risk-backend.onrender.com/api/myfunction?district=${district}&weather=${weather}`;
         setSearchResults([]);
 
         axios.get(backendUrl)
