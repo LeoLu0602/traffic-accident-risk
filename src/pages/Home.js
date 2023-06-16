@@ -432,7 +432,7 @@ function Home() {
                 reverseGeocoding(lat, lng);
             }
             else {
-                alert('請重新輸入地點');
+                alert('請重新輸入地點, 或嘗試在地名前加上「臺南」');
             }
         })
         .catch((error) => {
@@ -457,7 +457,7 @@ function Home() {
                 getWeather(districtEnglish2Chinese[district]);
             }
             else {
-                alert('請重新輸入地點');
+                alert('請重新輸入地點, 或嘗試在地名前加上「臺南」');
             }
         })
         .catch((error) => {
@@ -495,6 +495,7 @@ function Home() {
 
         axios.get(backendUrl)
         .then((res) => {
+            console.log(res.data);
             setSearchResults(res.data);
         })
         .catch((error) => {
