@@ -533,13 +533,13 @@ function Home() {
 
     return (
         <div id='home'>
-            <div className='home-top'>
+            <div id='home-top'>
                 <div id='ww_04a1b20ec59db' v='1.3' loc='id' a='{"t":"responsive","lang":"zh-Hant","sl_lpl":1,"ids":["wl9234"],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722","sl_tof":"7"}'>
                     Weather for the Following Location: 
                     <a href='https://2ua.org/de/twn/tainan/karte/' id='ww_04a1b20ec59db_u' target='_blank'>karte von Tainan, Taiwan</a>
                 </div>
             </div>
-            <div className='home-bottom'>
+            <div id='home-bottom'>
                 <GoogleMap
                     zoom={16}
                     center={{ lat: lat, lng: lng }}
@@ -554,9 +554,9 @@ function Home() {
                     />
                     <TrafficLayer />    
                 </GoogleMap>
-                <div className='home-right'>
+                <div id='home-right'>
                     <input
-                        className='search-box'
+                        id='search-box'
                         placeholder='輸入地點'
                         type='text'
                         value={searchText}
