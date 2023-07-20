@@ -336,7 +336,7 @@ body {
         height: 1200px;
         flex-direction: column-reverse;
         justify-content: space-between;
-       margin: 20px 0;
+        margin: 20px 0;
     }
 
     #home-right {
