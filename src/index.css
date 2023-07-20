@@ -157,10 +157,24 @@ body {
 }
 
 #search-results {
+    position: relative;
     width: 100%;
     height: 70%;
     overflow: auto;
     background-color: white;
+}
+
+.loading {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    font-weight: bold;
 }
 
 #search-results::-webkit-scrollbar {
