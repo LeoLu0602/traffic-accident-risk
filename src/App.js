@@ -1,12 +1,22 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
 import Home from './pages/Home';
 import Eda from './pages/Eda';
-import Test from './pages/Test';
 import Error from './pages/Error';
 
 function App() {
     const url = window.location.href;
     const path = url.slice(url.lastIndexOf('/'));
+
+    useEffect(() => {
+        // for google map
+        const script = document.createElement('script');
+
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_API_KEY}&libraries=places`;
+        script.async = true;
+
+        document.body.appendChild(script);
+    }, []);
 
     return(
         <Router>
@@ -24,7 +34,6 @@ function App() {
             <Routes>
                 <Route path='/' element={<Home />}></Route>
                 <Route path='/eda' element={<Eda />}></Route>
-                <Route path='/test' element={<Test />}></Route>
                 <Route path='*' element={<Error />}></Route>
             </Routes>
         </Router>
