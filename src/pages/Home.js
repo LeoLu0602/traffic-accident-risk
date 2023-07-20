@@ -586,11 +586,12 @@ function Home() {
     });
 
     useEffect(() => {
-        if (lng2) {
-            setCenterLat((lat1 + lat2) / 2);
-            setCenterLng((lng1 + lng2) / 2);
+        if (!lat1 || !lng1 || !lat2 || !lng2) {
+            return;
         }
 
+        setCenterLat((lat1 + lat2) / 2);
+        setCenterLng((lng1 + lng2) / 2);
         getRoutes();
 
         // Order: reverseGeocoding -> getWeather -> sendRequest
