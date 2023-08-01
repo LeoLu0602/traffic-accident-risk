@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import Home from './pages/Home';
 import Eda from './pages/Eda';
+import Map from './pages/Map';
 import Error from './pages/Error';
 
 function App() {
@@ -27,6 +28,9 @@ function App() {
                 <a href='/eda' className={ path === '/eda' ? 'nav-item nav-active no-underline' : 'nav-item no-underline' }>
                     <div>資料分析</div>
                 </a>
+                <a href='/map' className={ path === '/map' ? 'nav-item nav-active no-underline' : 'nav-item no-underline' }>
+                    <div>風險地圖</div>
+                </a>
                 <a href='/' id='nav-brand' className='no-underline'>
                     <div>臺南市交通事故風險地圖</div>
                 </a>
@@ -34,6 +38,7 @@ function App() {
             <Routes>
                 <Route path='/' element={<Home />}></Route>
                 <Route path='/eda' element={<Eda />}></Route>
+                <Route path='/map' element={<Map />}></Route>
                 <Route path='*' element={<Error />}></Route>
             </Routes>
         </Router>

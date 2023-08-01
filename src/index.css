@@ -254,6 +254,14 @@ body {
     font-size: 1.2em;
 }
 
+.risk-map {
+    position: fixed;
+    left: 0;
+    top: 10vh;
+    width: 100%;
+    height: 100%;
+}
+
 @media screen and (max-width: 900px) {
     body {
         padding-top: 50px;
@@ -311,6 +319,10 @@ body {
 
     .hide {
         display: none;
+    }
+
+    .risk-map {
+        top: 50px;
     }
 }
 
@@ -371,5 +383,9 @@ body {
 
     .hide {
         display: none;
+    }
+
+    .risk-map {
+        top: 50px;
     }
 }
