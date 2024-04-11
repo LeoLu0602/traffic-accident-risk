@@ -481,7 +481,7 @@ function Home() {
       const current_hour = current_time.getHours();
       const time = current_hour < 6 ? 0 : current_hour < 18 ? 1 : 2;
       const weatherUrl =
-        'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-079?Authorization=CWB-C8017091-8B5F-4A12-AB41-E99EF815C107&elementName=WeatherDescription';
+        'https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-D0047-079?Authorization=CWB-C8017091-8B5F-4A12-AB41-E99EF815C107&elementName=WeatherDescription';
 
       const res = await axios.get(weatherUrl);
       const data = res.data;
