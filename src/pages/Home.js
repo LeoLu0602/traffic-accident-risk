@@ -21,46 +21,6 @@ function Home() {
   const [searchResults, setSearchResults] = useState([]);
   const [directions, setDirections] = useState(null);
 
-  const districtEnglish2Chinese = {
-    Houbi: '後壁區',
-    Yanshuei: '鹽水區',
-    Beimen: '北門區',
-    Syuejia: '學甲區',
-    Siaying: '下營區',
-    Jiangiyun: '將軍區',
-    Madou: '麻豆區',
-    Jiali: '佳里區',
-    Shanhua: '善化區',
-    Sigan: '西港區',
-    Anding: '安定區',
-    Sinshih: '新市區',
-    Qigu: '七股區',
-    Annan: '安南區',
-    Yongkang: '永康區',
-    Anping: '安平區',
-    South: '南區',
-    Gueiren: '歸仁區',
-    Rende: '仁德區',
-    'West Central': '中西區',
-    Baihe: '白河區',
-    Xinying: '新營區',
-    Dongshan: '東山區',
-    Liouying: '柳營區',
-    Lioujia: '六甲區',
-    Nansi: '楠西區',
-    Guantian: '官田區',
-    Nanhua: '南化區',
-    Danei: '大內區',
-    Yujing: '玉井區',
-    Shanshang: '山上區',
-    Sinhua: '新化區',
-    Zoujhen: '左鎮區',
-    Guaanmiao: '關廟區',
-    Longci: '龍崎區',
-    East: '東區',
-    North: '北區',
-  };
-
   const simplifiedWeather = {
     晴天: '晴',
     晴時多雲: '晴',
@@ -506,7 +466,6 @@ function Home() {
         const district1 = match1.slice(3);
         const district2 = match2.slice(3);
 
-        console.log('[reverseGeocoding]', district1, district2);
         getWeather(district1, district2);
       }
     } catch (error) {
